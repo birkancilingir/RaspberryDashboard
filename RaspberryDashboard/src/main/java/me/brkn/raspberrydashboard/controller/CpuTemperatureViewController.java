@@ -1,24 +1,29 @@
 package me.brkn.raspberrydashboard.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import me.brkn.raspberrydashboard.commandlet.CommandletExecuter;
-import me.brkn.raspberrydashboard.commandlet.CpuTemperatureReaderCommandlet;
+import me.brkn.raspberrydashboard.service.ICpuTemperatureService;
+import me.brkn.raspberrydashboard.service.input.CpuTemperatureServiceInput;
+import me.brkn.raspberrydashboard.service.output.CpuTemperatureServiceOutput;
 
 @RestController
 public class CpuTemperatureViewController {
 
+	@Autowired
+	private ICpuTemperatureService cpuTemperatureService;
+
 	@RequestMapping("/cputemperatureview")
 	public String index() throws IOException, InterruptedException {
 
-		CpuTemperatureReaderCommandlet commandlet = new CpuTemperatureReaderCommandlet();
-		ArrayList<String> commandResponse = CommandletExecuter.getInstance().executeCommand(commandlet);
+		CpuTemperatureServiceInput cpuTemperatureServiceInput = new CpuTemperatureServiceInput();
+		CpuTemperatureServiceOutput currentCpuTemperatureOutput = cpuTemperatureService
+				.getCurrentTemperature(cpuTemperatureServiceInput);
 
-		return commandResponse.get(0);
+		return currentCpuTemperatureOutput.getCurrentTemperature().setScale(2).toPlainString();
 	}
 
 }
