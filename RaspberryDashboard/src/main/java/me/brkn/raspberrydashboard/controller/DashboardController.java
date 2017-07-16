@@ -2,11 +2,12 @@ package me.brkn.raspberrydashboard.controller;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import me.brkn.raspberrydashboard.service.ICpuTemperatureService;
 
@@ -17,7 +18,7 @@ public class DashboardController {
 	private ICpuTemperatureService cpuTemperatureService;
 
 	@RequestMapping(value = "/dashboard")
-	public String index(Map<String, Object> model) throws IOException, InterruptedException {
+	public ModelAndView requestHandler(WebRequest request) throws IOException, InterruptedException {
 
 		/*
 		 * CpuTemperatureServiceInput cpuTemperatureServiceInput = new
@@ -26,13 +27,14 @@ public class DashboardController {
 		 * .getCurrentTemperature(cpuTemperatureServiceInput);
 		 */
 
-		model.put("time", new Date());
-		model.put("message", "Hello World!");
-		// model.put("cpuTemperature",
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("time", new Date());
+		mav.addObject("message", "Hello World!");
+		// model.addObject("cpuTemperature",
 		// currentCpuTemperatureOutput.getCurrentTemperature().setScale(2).toPlainString());
+		mav.setViewName("dashboard");
 
-		return "dashboard";
-
+		return mav;
 	}
 
 }

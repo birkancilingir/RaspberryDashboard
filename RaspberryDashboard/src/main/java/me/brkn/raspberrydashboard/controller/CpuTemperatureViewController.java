@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
 
 import me.brkn.raspberrydashboard.service.ICpuTemperatureService;
 import me.brkn.raspberrydashboard.service.input.CpuTemperatureServiceInput;
@@ -17,7 +18,7 @@ public class CpuTemperatureViewController {
 	private ICpuTemperatureService cpuTemperatureService;
 
 	@RequestMapping("/cputemperatureview")
-	public String index() throws IOException, InterruptedException {
+	public String requestHandler(WebRequest request) throws IOException, InterruptedException {
 
 		CpuTemperatureServiceInput cpuTemperatureServiceInput = new CpuTemperatureServiceInput();
 		CpuTemperatureServiceOutput currentCpuTemperatureOutput = cpuTemperatureService
