@@ -6,3 +6,4 @@ Developed using Eclipse IDE
 Frameworks & Libraries
 
 - Spring Boot
+- Thymeleaf
