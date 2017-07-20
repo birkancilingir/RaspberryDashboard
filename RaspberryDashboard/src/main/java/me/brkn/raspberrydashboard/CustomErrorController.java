@@ -1,8 +1,9 @@
 package me.brkn.raspberrydashboard;
 
-import java.util.Date;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorAttributes;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorController;
@@ -13,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class CustomErrorController implements ErrorController {
+
+	private static final Logger logger = LoggerFactory.getLogger(CustomErrorController.class);
 
 	private static final String PATH = "/error";
 
@@ -57,21 +60,24 @@ public class CustomErrorController implements ErrorController {
 	}
 
 	private void handleNotFound(ModelAndView mav, Map<String, Object> attributes) {
-		Date timestamp = (Date) attributes.get("timestamp");
 		Integer status = (Integer) attributes.get("status");
 		String error = (String) attributes.get("error");
 		String path = (String) attributes.get("path");
+
+		String errorString = "Status: " + status + " | Error: " + error + " | Path: " + path;
+		logger.error(errorString);
 
 		mav.addObject("statusCode", status);
 		mav.addObject("isNotFoundError", true);
 	}
 
 	private void handleInternalServerError(ModelAndView mav, Map<String, Object> attributes) {
-
-		Date timestamp = (Date) attributes.get("timestamp");
 		Integer status = (Integer) attributes.get("status");
 		String error = (String) attributes.get("error");
 		String trace = (String) attributes.get("trace");
+
+		String errorString = "Status: " + status + " | Error: " + error + "\n" + trace;
+		logger.error(errorString);
 
 		mav.addObject("statusCode", status);
 		mav.addObject("isNotFoundError", false);
