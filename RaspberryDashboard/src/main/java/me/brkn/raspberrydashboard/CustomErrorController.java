@@ -44,6 +44,9 @@ public class CustomErrorController implements ErrorController {
 		Integer status = (Integer) attributes.get("status");
 
 		switch (status) {
+		case 403:
+			handleNotAuthorized(mav, attributes);
+			break;
 		case 404:
 			handleNotFound(mav, attributes);
 			break;
@@ -59,6 +62,18 @@ public class CustomErrorController implements ErrorController {
 		return mav;
 	}
 
+	private void handleNotAuthorized(ModelAndView mav, Map<String, Object> attributes) {
+		Integer status = (Integer) attributes.get("status");
+		String error = (String) attributes.get("error");
+		String path = (String) attributes.get("path");
+
+		String errorString = "Status: " + status + " | Error: " + error + " | Path: " + path;
+		logger.error(errorString);
+
+		mav.addObject("statusCode", status);
+		mav.addObject("errorType", "NotAuthorized");
+	}
+
 	private void handleNotFound(ModelAndView mav, Map<String, Object> attributes) {
 		Integer status = (Integer) attributes.get("status");
 		String error = (String) attributes.get("error");
@@ -68,7 +83,7 @@ public class CustomErrorController implements ErrorController {
 		logger.error(errorString);
 
 		mav.addObject("statusCode", status);
-		mav.addObject("isNotFoundError", true);
+		mav.addObject("errorType", "NotFoundError");
 	}
 
 	private void handleInternalServerError(ModelAndView mav, Map<String, Object> attributes) {
@@ -80,7 +95,7 @@ public class CustomErrorController implements ErrorController {
 		logger.error(errorString);
 
 		mav.addObject("statusCode", status);
-		mav.addObject("isNotFoundError", false);
+		mav.addObject("errorType", "InternalServerError");
 	}
 
 }

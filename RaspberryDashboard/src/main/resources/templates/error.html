@@ -14,28 +14,31 @@
 		<div class="content-container">
 			<div class="head-line secondary-text-color" th:text="${statusCode}"></div>
 			
-			<div class="subheader primary-text-color" th:if="${isNotFoundError}">
+			<div class="subheader primary-text-color" th:if="${errorType == 'NotFoundError'}">
 				Oops, the page you're <br /> looking for does not exist.
 			</div>
-			<div class="subheader primary-text-color" th:if="${not isNotFoundError}">
+			<div class="subheader primary-text-color" th:if="${errorType == 'NotAuthorized'}">
+				Oops, you are not authorized <br /> to view this page.
+			</div>
+			<div class="subheader primary-text-color" th:if="${errorType == 'InternalServerError'}">
 				Looks like we're having <br> some server issues.
 			</div>
 			<hr>
 			<div class="clearfix"></div>
-			<div class="context primary-text-color" th:if="${isNotFoundError}">
+			<div class="context primary-text-color" th:if="${errorType == 'NotFoundError'}">
 				<p>
 					You may want to head back to the homepage.<br />
 					If you think something is broken, report a problem.
 				</p>
 			</div>
-			<div class="context primary-text-color" th:if="${not isNotFoundError}">
+			<div class="context primary-text-color" th:unless="${errorType == 'NotFoundError'}">
 				<p>
 					Go back to the previous page and try again. If you think
 					something is broken, report a problem.
 				</p>
 			</div>
 			<div class="buttons-container">
-				<a class="border-button" href="#" target="_blank" th:if="${isNotFoundError}">Go To Homepage</a>
+				<a class="border-button" href="#" target="_blank" th:if="${errorType == 'NotFoundError'}">Go To Homepage</a>
 				<a class="border-button" href="mailto:#" target="_blank">Report A Problem</a>
 			</div>
 		</div>
