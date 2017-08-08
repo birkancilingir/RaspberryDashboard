@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,10 +36,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			String currentLine = null;
 			while ((currentLine = reader.readLine()) != null) {
 				if (!currentLine.isEmpty()) {
-					String[] credential = currentLine.split(":");
+					String[] credential = currentLine.split(Pattern.quote(ProjectConstants.getDelimiter()));
 
 					if (credential.length == 3) {
-						String[] roles = credential[2].split("\\|");
+						String[] roles = credential[2].split(Pattern.quote(ProjectConstants.getSecondaryDelimiter()));
 						User user = new User(credential[0], credential[1], roles);
 						credentialRepository.put(user.username, user);
 					}
