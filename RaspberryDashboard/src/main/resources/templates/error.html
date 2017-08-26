@@ -2,44 +2,41 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 	<head>
-    	<script src="js/jquery-3.2.1.js"></script>
-    	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-		<link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" />
-		<link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+    	<script src="js/lib/jquery-3.2.1.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/error.css">
 		
 		<!-- Error page template from Better Error Pages by StatusPages.io -->
 	</head>
-	<body class="plain error-page-wrapper background-color background-image">
+	<body class="plain error-page-wrapper">
 		<div class="content-container">
-			<div class="head-line secondary-text-color" th:text="${statusCode}"></div>
+			<div class="head-line primary-text xx-large-text" th:text="${statusCode}"></div>
 			
-			<div class="subheader primary-text-color" th:if="${errorType == 'NotFoundError'}">
+			<div class="subheader primary-text x-large-text" th:if="${errorType == 'NotFoundError'}">
 				Oops, the page you're <br /> looking for does not exist.
 			</div>
-			<div class="subheader primary-text-color" th:if="${errorType == 'NotAuthorized'}">
+			<div class="subheader primary-text x-large-text" th:if="${errorType == 'NotAuthorized'}">
 				Oops, you are not authorized <br /> to view this page.
 			</div>
-			<div class="subheader primary-text-color" th:if="${errorType == 'InternalServerError'}">
+			<div class="subheader primary-text x-large-text" th:if="${errorType == 'InternalServerError'}">
 				Looks like we're having <br> some server issues.
 			</div>
 			<hr>
 			<div class="clearfix"></div>
-			<div class="context primary-text-color" th:if="${errorType == 'NotFoundError'}">
+			<div class="context primary-text" th:if="${errorType == 'NotFoundError'}">
 				<p>
 					You may want to head back to the homepage.<br />
 					If you think something is broken, report a problem.
 				</p>
 			</div>
-			<div class="context primary-text-color" th:unless="${errorType == 'NotFoundError'}">
+			<div class="context primary-text large-text" th:unless="${errorType == 'NotFoundError'}">
 				<p>
 					Go back to the previous page and try again. If you think
 					something is broken, report a problem.
 				</p>
 			</div>
 			<div class="buttons-container">
-				<a class="border-button" href="#" target="_blank" th:if="${errorType == 'NotFoundError'}">Go To Homepage</a>
-				<a class="border-button" href="mailto:#" target="_blank">Report A Problem</a>
+				<a class="border-button primary-text normal-text" href="#" target="_blank" th:if="${errorType == 'NotFoundError'}">GO TO HOMEPAGE</a>
+				<a class="border-button primary-text normal-text" href="mailto:#" target="_blank">REPORT A PROBLEM</a>
 			</div>
 		</div>
 		<script>
