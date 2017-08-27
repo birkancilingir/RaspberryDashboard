@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-<meta charset="UTF-8">
-<title>Dashboard</title>
-</head>
-<body>
-	<input type="text" th:value="${message}"/>
-	<input type="text" th:value="${time}"/>
-</body>
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Raspberry Dashboard</title>
+		
+    	<script src="js/lib/jquery-3.2.1.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/dashboard.css">
+	</head>
+	<body>
+		<div>
+			<span th:text="${message}"></span>
+			<span th:text="${time}"></span>
+		</div>
+		<div>
+			<form class="logout-form" th:action="@{/logout}" method="post">
+				<input type="submit" value="Logout" />
+			</form:form>
+		</div>
+	</body>
 </html>

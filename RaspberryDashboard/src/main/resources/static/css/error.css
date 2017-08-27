@@ -62,7 +62,7 @@ body {
 }
 .plain.error-page-wrapper .content-container {
   transition: left .5s ease-out, opacity .5s ease-out;
-  max-width: 400px;
+  max-width: 450px;
   position: relative;
   left: -30px;
   opacity: 0;

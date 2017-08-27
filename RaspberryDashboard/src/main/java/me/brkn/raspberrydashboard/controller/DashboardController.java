@@ -20,17 +20,16 @@ public class DashboardController {
 	@RequestMapping(value = "/dashboard")
 	public ModelAndView requestHandler(WebRequest request) throws IOException, InterruptedException {
 
-		/*
-		 * CpuTemperatureServiceInput cpuTemperatureServiceInput = new
-		 * CpuTemperatureServiceInput(); CpuTemperatureServiceOutput
-		 * currentCpuTemperatureOutput = cpuTemperatureService
-		 * .getCurrentTemperature(cpuTemperatureServiceInput);
-		 */
+		// CpuTemperatureServiceInput cpuTemperatureServiceInput = new
+		// CpuTemperatureServiceInput();
+		// CpuTemperatureServiceOutput currentCpuTemperatureOutput =
+		// cpuTemperatureService
+		// .getCurrentTemperature(cpuTemperatureServiceInput);
 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("time", new Date());
 		mav.addObject("message", "Hello World!");
-		// model.addObject("cpuTemperature",
+		// mav.addObject("cpuTemperature",
 		// currentCpuTemperatureOutput.getCurrentTemperature().setScale(2).toPlainString());
 		mav.setViewName("dashboard");
 

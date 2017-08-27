@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+@CHARSET "UTF-8";
+html {
+  font-size: 16px;
+  line-height: 24px;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100%;
+  background: linear-gradient(to bottom, #78ddff, rgba(120, 221, 255, 0.9));
+}
+
+.primary-text {
+  color: white !important;
+}
+
+.secondary-text {
+  color: #b3b3b3 !important;
+}
+
+.xx-large-text {
+  font-size: 48px;
+}
+
+.x-large-text {
+  font-size: 36px;
+}
+
+.large-text {
+  font-size: 18px;
+}
+
+.normal-text {
+  font-size: 14px;
+}
+
+.small-text {
+  font-size: 12px;
+}

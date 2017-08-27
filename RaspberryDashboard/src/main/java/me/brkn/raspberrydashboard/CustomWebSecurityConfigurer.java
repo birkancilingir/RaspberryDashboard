@@ -67,7 +67,8 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 				.antMatchers(allowedUrlsForAdmins.toArray(new String[0])).hasRole("ADMIN")
 				.antMatchers(allowedUrlsForUsers.toArray(new String[0])).hasRole("USER").anyRequest().authenticated()
 				.and().formLogin().loginPage("/login").defaultSuccessUrl("/dashboard").permitAll().and().logout()
-				.logoutUrl("/logout").permitAll();
+				.logoutUrl("/logout").logoutSuccessUrl("/login?logout").clearAuthentication(true)
+				.invalidateHttpSession(true).deleteCookies("JSESSIONID").permitAll();
 	}
 
 	@Autowired
