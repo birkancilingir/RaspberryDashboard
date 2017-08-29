@@ -2,7 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>Raspberry Dashboard</title>
-
+		
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" type="text/css" href="css/lib/bootstrap-4.0.0-beta.css">
+		
+		<!-- Custom styles for the page -->
 		<link rel="stylesheet" type="text/css" href="css/login.css">
 	</head>
 	<body>
@@ -10,14 +18,18 @@
 		<div class="login-page">
 			<div class="form">
 				<form class="login-form" th:action="@{/login}" method="post">
-					<input type="text" placeholder="username" id="username" name="username" class="normal-text" />
-					<input type="password" placeholder="password" id="password" name="password" class="normal-text" />
-					<button type="submit" class="primary-text normal-text">LOGİN</button>
+					<input type="text" placeholder="username" id="username" name="username" class="form-control" />
+					<input type="password" placeholder="password" id="password" name="password" class="form-control" />
+					<button type="submit" class="btn btn-primary btn-block">LOGİN</button>
 	
 					<p class="message secondary-text small-text" th:if="${param.error != null}">Invalid username or password.</p>
 					<p class="message secondary-text small-text" th:if="${param.logout != null}">You have been logged out.</p>
 				</form>
 			</div>
 		</div>
+	
+		<script src="js/lib/jquery-3.2.1.js"></script>
+		<script src="js/lib/popper-1.12.3.js"></script>
+		<script src="js/lib/bootstrap-4.0.0-beta.js"></script>
 	</body>
 </html>

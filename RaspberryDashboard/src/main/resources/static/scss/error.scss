@@ -2,6 +2,11 @@
 
 @import 'common';
 
+body {
+	min-height: 100%;
+	background: linear-gradient(to bottom, rgba(0, 123, 255, 1), rgba(0, 123, 255, 0.9));
+}
+
 .clearfix {
 	clear: both;
 	

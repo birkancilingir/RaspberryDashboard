@@ -1,21 +1,46 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>Raspberry Dashboard</title>
 		
-    	<script src="js/lib/jquery-3.2.1.js"></script>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" type="text/css" href="css/lib/bootstrap-4.0.0-beta.css">
+		
+		<!-- Custom styles for the page -->
 		<link rel="stylesheet" type="text/css" href="css/dashboard.css">
 	</head>
 	<body>
-		<div>
-			<span th:text="${message}"></span>
-			<span th:text="${time}"></span>
-		</div>
-		<div>
-			<form class="logout-form" th:action="@{/logout}" method="post">
-				<input type="submit" value="Logout" />
-			</form:form>
-		</div>
+		<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation-bar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" th:href="@{#}">Raspberry Dashboard</a>
+	
+			<div class="collapse navbar-collapse" id="navigation-bar">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link active" th:href="@{/dashboard}">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/settings}">Settings</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/administration}">Administration</a>
+					</li>
+				</ul>
+	
+				<form class="form-inline" th:action="@{/logout}" method="post">
+					<button class="btn btn-primary" type="submit">Logout</button>
+				</form:form>
+			</div>
+		</nav>
+	
+		<script src="js/lib/jquery-3.2.1.js"></script>
+		<script src="js/lib/popper-1.12.3.js"></script>
+		<script src="js/lib/bootstrap-4.0.0-beta.js"></script>
 	</body>
 </html>

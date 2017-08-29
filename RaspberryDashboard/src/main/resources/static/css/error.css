@@ -9,11 +9,6 @@ html {
   overflow-x: hidden;
 }
 
-body {
-  min-height: 100%;
-  background: linear-gradient(to bottom, #78ddff, rgba(120, 221, 255, 0.9));
-}
-
 .primary-text {
   color: white !important;
 }
@@ -40,6 +35,11 @@ body {
 
 .small-text {
   font-size: 12px;
+}
+
+body {
+  min-height: 100%;
+  background: linear-gradient(to bottom, #007bff, rgba(0, 123, 255, 0.9));
 }
 
 .clearfix {

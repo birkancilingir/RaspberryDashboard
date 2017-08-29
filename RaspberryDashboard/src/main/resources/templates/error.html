@@ -37,7 +37,7 @@
 				</p>
 			</div>
 			<div class="buttons-container">
-				<a class="border-button primary-text normal-text" href="#" target="_blank" th:if="${errorType == 'NotFoundError'}">GO TO HOMEPAGE</a>
+				<a class="border-button primary-text normal-text" th:href="@{/dashboard}" target="_self" th:if="${errorType == 'NotFoundError'}">GO TO HOMEPAGE</a>
 				<a class="border-button primary-text normal-text" href="mailto:#" target="_blank">REPORT A PROBLEM</a>
 			</div>
 		</div>
