@@ -1,6 +1,7 @@
 package me.brkn.raspberrydashboard.controller;
 
 import java.io.IOException;
+import java.math.RoundingMode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,7 @@ public class CpuTemperatureViewController {
 		CpuTemperatureServiceOutput currentCpuTemperatureOutput = cpuTemperatureService
 				.getCurrentTemperature(cpuTemperatureServiceInput);
 
-		return currentCpuTemperatureOutput.getCurrentTemperature().setScale(2).toPlainString();
+		return currentCpuTemperatureOutput.getCurrentTemperature().setScale(2, RoundingMode.HALF_EVEN).toPlainString();
 	}
 
 }

@@ -1,2 +1,3 @@
 /administration±ROLE_ADMIN
+/cputemperatureview±ROLE_ADMIN|ROLE_USER
 /dashboard±ROLE_ADMIN|ROLE_USER
