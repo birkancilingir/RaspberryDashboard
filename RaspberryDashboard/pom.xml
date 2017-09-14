@@ -88,6 +88,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.python/jython-standalone -->
+		<dependency>
+			<groupId>org.python</groupId>
+			<artifactId>jython-standalone</artifactId>
+			<version>2.5.2</version>
+		</dependency>
 	</dependencies>
 
 	<!-- (you don't need this if you are using a .RELEASE version) -->

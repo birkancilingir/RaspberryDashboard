@@ -1,4 +1,4 @@
-package me.brkn.raspberrydashboard.commandlet;
+package me.brkn.raspberrydashboard.commandlet.core;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -1,5 +1,7 @@
 package me.brkn.raspberrydashboard.commandlet;
 
+import me.brkn.raspberrydashboard.commandlet.core.ICommandlet;
+
 public class CpuTemperatureReaderCommandlet implements ICommandlet {
 
 	private static final String COMMAND = "cat /sys/class/thermal/thermal_zone0/temp";

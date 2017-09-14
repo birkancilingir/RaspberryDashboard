@@ -1,4 +1,4 @@
-package me.brkn.raspberrydashboard.commandlet;
+package me.brkn.raspberrydashboard.commandlet.core;
 
 public interface ICommandlet {
 
