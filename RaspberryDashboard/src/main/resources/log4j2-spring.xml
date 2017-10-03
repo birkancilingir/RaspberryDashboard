@@ -23,7 +23,7 @@
         <Root>
             <AppenderRef ref="Console-Appender"/>
         </Root>
-        <Logger name="me.brkn.raspberrydashboard" level="info" additivity="false">
+        <Logger name="me.brkn.raspberrydashboard" level="all" additivity="false">
             <AppenderRef ref="File-Appender"/>
             <AppenderRef ref="Console-Appender"/>
          </Logger>

@@ -2,33 +2,26 @@ package me.brkn.raspberrydashboard;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.servlet.error.ErrorAttributes;
-import org.springframework.boot.autoconfigure.web.servlet.error.ErrorController;
+import org.springframework.boot.autoconfigure.web.servlet.error.AbstractErrorController;
+import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class CustomErrorController implements ErrorController {
+public class CustomErrorController extends AbstractErrorController {
+
+	public CustomErrorController(ErrorAttributes errorAttributes) {
+		super(errorAttributes);
+	}
 
 	private static final Logger logger = LoggerFactory.getLogger(CustomErrorController.class);
 
 	private static final String PATH = "/error";
-
-	@Autowired
-	private ErrorAttributes errorAttributes;
-	// timestamp - The time that the errors were extracted
-	// status - The status code
-	// error - The error reason
-	// exception - The class name of the root exception
-	// message - The exception message
-	// errors - Any ObjectErrors from a BindingResult exception
-	// trace - The exception stack trace
-	// path - The URL path when the exception was raised
 
 	@Override
 	public String getErrorPath() {
@@ -36,9 +29,17 @@ public class CustomErrorController implements ErrorController {
 	}
 
 	@RequestMapping(value = PATH)
-	public ModelAndView requestHandler(WebRequest request) {
+	public ModelAndView requestHandler(HttpServletRequest request) {
 
-		Map<String, Object> attributes = errorAttributes.getErrorAttributes(request, true);
+		Map<String, Object> attributes = getErrorAttributes(request, true);
+		// timestamp - The time that the errors were extracted
+		// status - The status code
+		// error - The error reason
+		// exception - The class name of the root exception
+		// message - The exception message
+		// errors - Any ObjectErrors from a BindingResult exception
+		// trace - The exception stack trace
+		// path - The URL path when the exception was raised
 
 		ModelAndView mav = new ModelAndView();
 		Integer status = (Integer) attributes.get("status");

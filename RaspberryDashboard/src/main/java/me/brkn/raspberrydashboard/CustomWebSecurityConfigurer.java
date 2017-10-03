@@ -2,8 +2,9 @@ package me.brkn.raspberrydashboard;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -30,13 +31,14 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 		try {
 			ClassLoader classLoader = Application.class.getClassLoader();
 			File file = new File(classLoader.getResource("allowed-pages").getFile());
-			reader = new BufferedReader(new FileReader(file));
+
+			reader = new BufferedReader(
+					new InputStreamReader(new FileInputStream(file), ProjectConstants.getProjectEncoding()));
 
 			String currentLine = null;
 			while ((currentLine = reader.readLine()) != null) {
 				if (!currentLine.isEmpty()) {
 					String[] allowedPage = currentLine.split(Pattern.quote(ProjectConstants.getDelimiter()));
-
 					if (allowedPage.length == 2) {
 						String[] roles = allowedPage[1].split(Pattern.quote(ProjectConstants.getSecondaryDelimiter()));
 

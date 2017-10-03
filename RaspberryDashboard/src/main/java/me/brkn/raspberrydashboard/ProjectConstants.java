@@ -7,6 +7,10 @@ public class ProjectConstants {
 	private static final String ROLE_USER = "ROLE_USER";
 	private static final String ROLE_ADMIN = "ROLE_ADMIN";
 
+	private static final String COMMANDLETS_PATH = "commandlets";
+
+	private static final String PROJECT_ENCODING = "UTF-8";
+
 	public static String getDelimiter() {
 		return DELIMITER;
 	}
@@ -21,6 +25,14 @@ public class ProjectConstants {
 
 	public static String getRoleAdmin() {
 		return ROLE_ADMIN;
+	}
+
+	public static String getCommandletsPath() {
+		return COMMANDLETS_PATH;
+	}
+
+	public static String getProjectEncoding() {
+		return PROJECT_ENCODING;
 	}
 
 }
