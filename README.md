@@ -9,4 +9,3 @@ Frameworks & Libraries
 - Thymeleaf
 - Bootstrap
 - Log4j2
-- Jython
