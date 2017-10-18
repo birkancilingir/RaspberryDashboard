@@ -7,5 +7,6 @@ Frameworks & Libraries
 
 - Spring Boot
 - Thymeleaf
+- jQuery
 - Bootstrap
 - Log4j2
