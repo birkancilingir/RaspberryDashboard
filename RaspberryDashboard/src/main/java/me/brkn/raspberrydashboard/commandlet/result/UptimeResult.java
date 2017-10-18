@@ -1,28 +1,26 @@
 package me.brkn.raspberrydashboard.commandlet.result;
 
-import java.math.BigDecimal;
-
 import me.brkn.raspberrydashboard.commandlet.core.ICommandletResult;
 
 public class UptimeResult implements ICommandletResult {
 
 	/**
-	 * Uptime since the last system reboot in days / hours.
+	 * Uptime since the last system reboot in days / hours / minutes.
 	 */
-	private BigDecimal uptime;
+	private String uptime;
 
-	public BigDecimal getUptime() {
+	public String getUptime() {
 		return uptime;
 	}
 
-	public void setUptime(BigDecimal uptime) {
+	public void setUptime(String uptime) {
 		this.uptime = uptime;
 	}
 
 	public UptimeResult() {
 	}
 
-	public UptimeResult(BigDecimal uptime) {
+	public UptimeResult(String uptime) {
 		this.uptime = uptime;
 	}
 

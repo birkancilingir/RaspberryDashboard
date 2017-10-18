@@ -24,7 +24,7 @@ public class CpuTemperatureReaderCommandlet implements ICommandlet {
 			return new CpuTemperatureReaderResult(BigDecimal.ZERO);
 
 		BigDecimal temperature = new BigDecimal(commandletResult);
-		temperature = temperature.divide(temperature, 2, RoundingMode.HALF_UP);
+		temperature = temperature.divide(new BigDecimal(1000), 2, RoundingMode.HALF_UP);
 
 		return new CpuTemperatureReaderResult(temperature);
 	}
