@@ -1,1 +1,2 @@
-uptime
+uptime=`uptime`
+echo '{ "uptime" : "'$uptime'"}'

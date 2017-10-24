@@ -1,5 +1,11 @@
 package me.brkn.raspberrydashboard.commandlet;
 
+import java.io.IOException;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import me.brkn.raspberrydashboard.commandlet.core.ICommandlet;
 import me.brkn.raspberrydashboard.commandlet.core.ICommandletResult;
 import me.brkn.raspberrydashboard.commandlet.result.UptimeResult;
@@ -16,34 +22,15 @@ public class UptimeCommandlet implements ICommandlet {
 		return null;
 	}
 
-	public ICommandletResult mapResult(String commandletResult) {
+	public ICommandletResult mapResult(String commandletResult)
+			throws JsonParseException, JsonMappingException, IOException {
 		if (commandletResult == null || commandletResult.isEmpty())
 			return new UptimeResult("-");
 
-		String uptime = "-";
-		if (commandletResult.indexOf("days") > 0) {
-			// 23:14:05 up 37 days, 19:42, 1 user, load average: 0.34, 0.35,
-			// 0.27
-			int startIndex = commandletResult.indexOf("up") + 3;
-			int endIndex = commandletResult.indexOf("days");
+		ObjectMapper mapper = new ObjectMapper();
+		UptimeResult result = mapper.readValue(commandletResult, UptimeResult.class);
 
-			uptime = commandletResult.substring(startIndex, endIndex) + " Days";
-		} else if (commandletResult.indexOf("mins") > 0) {
-			// 23:14:05 up 7 mins, 1 user, load average: 0.34, 0.35,
-			// 0.27
-			int startIndex = commandletResult.indexOf("up") + 3;
-			int endIndex = commandletResult.indexOf("mins");
-
-			uptime = commandletResult.substring(startIndex, endIndex) + " Minutes";
-		} else {
-			// 23:14:05 up 19:42, 1 user, load average: 0.34, 0.35, 0.27
-			int startIndex = commandletResult.indexOf("up") + 3;
-			int endIndex = commandletResult.indexOf(",", startIndex);
-
-			uptime = commandletResult.substring(startIndex, endIndex) + " Hours";
-		}
-
-		return new UptimeResult(uptime);
+		return result;
 	}
 
 }

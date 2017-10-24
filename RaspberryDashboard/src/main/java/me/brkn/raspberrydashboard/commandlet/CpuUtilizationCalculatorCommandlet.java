@@ -1,8 +1,6 @@
 package me.brkn.raspberrydashboard.commandlet;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -10,11 +8,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import me.brkn.raspberrydashboard.commandlet.core.ICommandlet;
 import me.brkn.raspberrydashboard.commandlet.core.ICommandletResult;
-import me.brkn.raspberrydashboard.commandlet.result.CpuTemperatureReaderResult;
+import me.brkn.raspberrydashboard.commandlet.result.CpuUtilizationCalculatorResult;
 
-public class CpuTemperatureReaderCommandlet implements ICommandlet {
+public class CpuUtilizationCalculatorCommandlet implements ICommandlet {
 
-	private static final String COMMAND_FILE_NAME = "cpu-temp-info";
+	private static final String COMMAND_FILE_NAME = "cpu-utilization-info";
 
 	public String getCommandFileName() {
 		return COMMAND_FILE_NAME;
@@ -27,11 +25,11 @@ public class CpuTemperatureReaderCommandlet implements ICommandlet {
 	public ICommandletResult mapResult(String commandletResult)
 			throws JsonParseException, JsonMappingException, IOException {
 		if (commandletResult == null || commandletResult.isEmpty())
-			return new CpuTemperatureReaderResult(BigDecimal.ZERO);
+			return new CpuUtilizationCalculatorResult();
 
 		ObjectMapper mapper = new ObjectMapper();
-		CpuTemperatureReaderResult result = mapper.readValue(commandletResult, CpuTemperatureReaderResult.class);
-		result.setTemperature(result.getTemperature().divide(new BigDecimal(1000), 2, RoundingMode.HALF_UP));
+		CpuUtilizationCalculatorResult result = mapper.readValue(commandletResult,
+				CpuUtilizationCalculatorResult.class);
 
 		return result;
 	}
